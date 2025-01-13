@@ -17,7 +17,7 @@ def analyze_images_in_folder(folder_path, output_file):
                 with Image.open(file_path) as img:
                     width, height = img.size
                     resolution = f"{width}x{height}"
-                    tag = "mobile" if height > width else "desktop"
+                    tag = "Mobile" if height > width else "Desktop"
 
                     data.append({
                         "name": file,
