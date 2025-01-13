@@ -55,6 +55,11 @@
         "tag": "Mobile"
     },
     {
+        "name": "5m5kLI9.png",
+        "resolution": "7680x4160",
+        "tag": "Desktop"
+    },
+    {
         "name": "60eced02-f152-4f71-a800-81b70e933968.png",
         "resolution": "2752x4872",
         "tag": "Mobile"
@@ -83,6 +88,21 @@
         "name": "acf90038-e9a3-41eb-bc72-4e9c988a7bd5.png",
         "resolution": "2944x6372",
         "tag": "Mobile"
+    },
+    {
+        "name": "bird.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
+        "name": "burning-earth.png",
+        "resolution": "10240x5760",
+        "tag": "Desktop"
+    },
+    {
+        "name": "cactus.png",
+        "resolution": "16168x10780",
+        "tag": "Desktop"
     },
     {
         "name": "dbec4e29-39e7-4e14-a227-29e3b9839c61.png",
@@ -125,9 +145,49 @@
         "tag": "Mobile"
     },
     {
+        "name": "freebsd.png",
+        "resolution": "10240x8192",
+        "tag": "Desktop"
+    },
+    {
         "name": "Frieren landscape with sunflowers\ud83c\udf3b.png",
         "resolution": "2944x5232",
         "tag": "Mobile"
+    },
+    {
+        "name": "girl-2.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gojira.png",
+        "resolution": "8888x5568",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gruv-kanji.png",
+        "resolution": "15360x8640",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gruvbox_image31.png",
+        "resolution": "7680x9504",
+        "tag": "Mobile"
+    },
+    {
+        "name": "gruvbox_image46.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
+        "name": "iuh3jkasndjans.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
+        "name": "nasa.png",
+        "resolution": "15360x8640",
+        "tag": "Desktop"
     },
     {
         "name": "Nostalgic Reverie.png",
@@ -135,9 +195,24 @@
         "tag": "Mobile"
     },
     {
+        "name": "philosophy.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
         "name": "Porsche.png",
         "resolution": "2944x6048",
         "tag": "Mobile"
+    },
+    {
+        "name": "rocket.png",
+        "resolution": "15360x8640",
+        "tag": "Desktop"
+    },
+    {
+        "name": "snake.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
     },
     {
         "name": "Viktor Arcane season 2 act 3.png",
@@ -205,6 +280,11 @@
         "tag": "Mobile"
     },
     {
+        "name": "5m5kLI9.png",
+        "resolution": "1920x1040",
+        "tag": "Desktop"
+    },
+    {
         "name": "60eced02-f152-4f71-a800-81b70e933968.png",
         "resolution": "2752x4872",
         "tag": "Mobile"
@@ -233,6 +313,21 @@
         "name": "acf90038-e9a3-41eb-bc72-4e9c988a7bd5.png",
         "resolution": "2944x6372",
         "tag": "Mobile"
+    },
+    {
+        "name": "bird.png",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
+        "name": "burning-earth.png",
+        "resolution": "2560x1440",
+        "tag": "Desktop"
+    },
+    {
+        "name": "cactus.png",
+        "resolution": "4042x2695",
+        "tag": "Desktop"
     },
     {
         "name": "dbec4e29-39e7-4e14-a227-29e3b9839c61.png",
@@ -275,9 +370,59 @@
         "tag": "Mobile"
     },
     {
+        "name": "freebsd.png",
+        "resolution": "2560x2048",
+        "tag": "Desktop"
+    },
+    {
         "name": "Frieren landscape with sunflowers\ud83c\udf3b.png",
         "resolution": "2944x5232",
         "tag": "Mobile"
+    },
+    {
+        "name": "girl-2.png",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
+        "name": "girl-outline.png",
+        "resolution": "5120x3200",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gojira.png",
+        "resolution": "2222x1392",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gruv-abstract-maze.png",
+        "resolution": "7680x4320",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gruv-kanji.png",
+        "resolution": "3840x2160",
+        "tag": "Desktop"
+    },
+    {
+        "name": "gruvbox_image31.png",
+        "resolution": "1920x2376",
+        "tag": "Mobile"
+    },
+    {
+        "name": "gruvbox_image46.png",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
+        "name": "iuh3jkasndjans.jpg",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
+        "name": "nasa.png",
+        "resolution": "3840x2160",
+        "tag": "Desktop"
     },
     {
         "name": "Nostalgic Reverie.png",
@@ -285,13 +430,38 @@
         "tag": "Mobile"
     },
     {
+        "name": "philosophy.png",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
         "name": "Porsche.png",
         "resolution": "2944x6048",
         "tag": "Mobile"
     },
     {
+        "name": "rocket.png",
+        "resolution": "3840x2160",
+        "tag": "Desktop"
+    },
+    {
+        "name": "snake.png",
+        "resolution": "1920x1080",
+        "tag": "Desktop"
+    },
+    {
+        "name": "starry-sky.png",
+        "resolution": "5120x2880",
+        "tag": "Desktop"
+    },
+    {
         "name": "Viktor Arcane season 2 act 3.png",
         "resolution": "2944x5232",
+        "tag": "Mobile"
+    },
+    {
+        "name": "YRAJQAT4Dg-avesta-rezaeizadeh-unsplash.jpg",
+        "resolution": "4000x6000",
         "tag": "Mobile"
     },
     {
