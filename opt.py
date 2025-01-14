@@ -1,7 +1,8 @@
 import os
 from PIL import Image
+Image.MAX_IMAGE_PIXELS = None 
 
-def optimize_images(input_folder, output_folder, quality=55):
+def optimize_images(input_folder, output_folder, quality=25):
     """
     Optimize images for web viewing and save them in the specified cache folder.
 
