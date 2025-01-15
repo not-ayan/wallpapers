@@ -180,11 +180,6 @@
         "tag": "Desktop"
     },
     {
-        "name": "iuh3jkasndjans.png",
-        "resolution": "7680x4320",
-        "tag": "Desktop"
-    },
-    {
         "name": "nasa.png",
         "resolution": "15360x8640",
         "tag": "Desktop"
@@ -281,7 +276,7 @@
     },
     {
         "name": "5m5kLI9.png",
-        "resolution": "1920x1040",
+        "resolution": "7680x4160",
         "tag": "Desktop"
     },
     {
@@ -316,17 +311,17 @@
     },
     {
         "name": "bird.png",
-        "resolution": "1920x1080",
+        "resolution": "7680x4320",
         "tag": "Desktop"
     },
     {
         "name": "burning-earth.png",
-        "resolution": "2560x1440",
+        "resolution": "10240x5760",
         "tag": "Desktop"
     },
     {
         "name": "cactus.png",
-        "resolution": "4042x2695",
+        "resolution": "16168x10780",
         "tag": "Desktop"
     },
     {
@@ -371,7 +366,7 @@
     },
     {
         "name": "freebsd.png",
-        "resolution": "2560x2048",
+        "resolution": "10240x8192",
         "tag": "Desktop"
     },
     {
@@ -381,47 +376,32 @@
     },
     {
         "name": "girl-2.png",
-        "resolution": "1920x1080",
-        "tag": "Desktop"
-    },
-    {
-        "name": "girl-outline.png",
-        "resolution": "5120x3200",
-        "tag": "Desktop"
-    },
-    {
-        "name": "gojira.png",
-        "resolution": "2222x1392",
-        "tag": "Desktop"
-    },
-    {
-        "name": "gruv-abstract-maze.png",
         "resolution": "7680x4320",
         "tag": "Desktop"
     },
     {
+        "name": "gojira.png",
+        "resolution": "8888x5568",
+        "tag": "Desktop"
+    },
+    {
         "name": "gruv-kanji.png",
-        "resolution": "3840x2160",
+        "resolution": "15360x8640",
         "tag": "Desktop"
     },
     {
         "name": "gruvbox_image31.png",
-        "resolution": "1920x2376",
+        "resolution": "7680x9504",
         "tag": "Mobile"
     },
     {
         "name": "gruvbox_image46.png",
-        "resolution": "1920x1080",
-        "tag": "Desktop"
-    },
-    {
-        "name": "iuh3jkasndjans.jpg",
-        "resolution": "1920x1080",
+        "resolution": "7680x4320",
         "tag": "Desktop"
     },
     {
         "name": "nasa.png",
-        "resolution": "3840x2160",
+        "resolution": "15360x8640",
         "tag": "Desktop"
     },
     {
@@ -431,7 +411,7 @@
     },
     {
         "name": "philosophy.png",
-        "resolution": "1920x1080",
+        "resolution": "7680x4320",
         "tag": "Desktop"
     },
     {
@@ -441,27 +421,17 @@
     },
     {
         "name": "rocket.png",
-        "resolution": "3840x2160",
+        "resolution": "15360x8640",
         "tag": "Desktop"
     },
     {
         "name": "snake.png",
-        "resolution": "1920x1080",
-        "tag": "Desktop"
-    },
-    {
-        "name": "starry-sky.png",
-        "resolution": "5120x2880",
+        "resolution": "7680x4320",
         "tag": "Desktop"
     },
     {
         "name": "Viktor Arcane season 2 act 3.png",
         "resolution": "2944x5232",
-        "tag": "Mobile"
-    },
-    {
-        "name": "YRAJQAT4Dg-avesta-rezaeizadeh-unsplash.jpg",
-        "resolution": "4000x6000",
         "tag": "Mobile"
     },
     {

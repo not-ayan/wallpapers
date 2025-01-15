@@ -42,5 +42,5 @@ def optimize_images(input_folder, output_folder, quality=25):
 
 # Example usage
 input_dir = "./"
-cache_dir = os.path.join(input_dir, "cache")
+cache_dir = os.path.join(input_dir, "cache/png")
 optimize_images(input_dir, cache_dir)

@@ -78,5 +78,5 @@ def optimize_images(input_folder, output_folder, quality=50, max_workers=8):
 
 # Example usage
 input_dir = "./"
-cache_dir = os.path.join(input_dir, "cache")
+cache_dir = os.path.join(input_dir, "cache/webp")
 optimize_images(input_dir, cache_dir)
