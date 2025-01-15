@@ -190,11 +190,10 @@ def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", col
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = []
-        for root, _, files in os.walk(input_folder):
-            for file in files:
-                if file.lower().endswith(".png"):
-                    file_path = os.path.join(root, file)
-                    futures.append(executor.submit(analyze_image, file_path, tags_json, tags_txt, colors_txt))
+        for file in os.listdir(input_folder):
+            file_path = os.path.join(input_folder, file)
+            if os.path.isfile(file_path) and file.lower().endswith(".png"):
+                futures.append(executor.submit(analyze_image, file_path, tags_json, tags_txt, colors_txt))
 
         # Wait for all tasks to complete
         for future in futures:
@@ -203,6 +202,7 @@ def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", col
     # Save updated tags.json
     with open(tags_file, "w") as tf:
         json.dump(tags_json, tf, indent=4)
+
 
 # Example usage
 input_dir = "./"

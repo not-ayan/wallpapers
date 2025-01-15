@@ -48,7 +48,7 @@ def process_image(file_path, output_folder, quality):
     except Exception as e:
         print(f"Skipping {file_path}: {e}")
 
-def optimize_images(input_folder, output_folder, quality=50, max_workers=8):
+def optimize_images(input_folder, output_folder, quality=40, max_workers=8):
     """
     Optimize PNG images for web viewing by converting them to WebP format and save them in the specified cache folder.
 
@@ -62,21 +62,16 @@ def optimize_images(input_folder, output_folder, quality=50, max_workers=8):
 
     tasks = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        for root, _, files in os.walk(input_folder):
-            # Skip the "cache" folder
-            if os.path.basename(root) == "cache":
-                continue
-
-            for file in files:
-                if file.lower().endswith(".png"):
-                    file_path = os.path.join(root, file)
-                    tasks.append(executor.submit(process_image, file_path, output_folder, quality))
+        for file in os.listdir(input_folder):
+            file_path = os.path.join(input_folder, file)
+            if os.path.isfile(file_path) and file.lower().endswith(".png"):
+                tasks.append(executor.submit(process_image, file_path, output_folder, quality))
 
         # Wait for all tasks to complete
         for task in tasks:
             task.result()
 
 # Example usage
-input_dir = "./"
+input_dir = "./"  # Specify the main folder
 cache_dir = os.path.join(input_dir, "cache/webp")
 optimize_images(input_dir, cache_dir)
