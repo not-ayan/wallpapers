@@ -808,5 +808,326 @@
         ],
         "resolution": "30720x17280",
         "platform": "Desktop"
+    },
+    "gruvbox_minimal_space.png": {
+        "tags": [
+            "wall clock",
+            "analog clock",
+            "bubble",
+            "barometer",
+            "weighing scale"
+        ],
+        "colors": [
+            "darkcyan",
+            "darkseagreen",
+            "cadetblue",
+            "darkslategray",
+            "beige"
+        ],
+        "resolution": "2560x1600",
+        "platform": "Desktop"
+    },
+    "finalizer.png": {
+        "tags": [
+            "T-shirt",
+            "laptop computer",
+            "sweatshirt",
+            "hockey puck",
+            "envelope"
+        ],
+        "colors": [
+            "goldenrod",
+            "indianred",
+            "dimgray",
+            "gray",
+            "darkslategray",
+            "darkolivegreen",
+            "darkkhaki",
+            "black"
+        ],
+        "resolution": "2732x1536",
+        "platform": "Desktop"
+    },
+    "firefox.png": {
+        "tags": [
+            "envelope",
+            "website",
+            "Polaroid camera",
+            "eraser",
+            "dust jacket"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "indianred",
+            "gray",
+            "darkgoldenrod",
+            "cadetblue",
+            "chocolate",
+            "darkslategray",
+            "darkolivegreen",
+            "bisque",
+            "burlywood",
+            "dimgray",
+            "brown"
+        ],
+        "resolution": "3840x2160",
+        "platform": "Desktop"
+    },
+    "great-wave-of-kanagawa-gruvbox.png": {
+        "tags": [
+            "barrette",
+            "parachute",
+            "balloon",
+            "chambered nautilus",
+            "wall clock"
+        ],
+        "colors": [
+            "indianred",
+            "cadetblue",
+            "darkslategray",
+            "gainsboro",
+            "darksalmon",
+            "lightsteelblue",
+            "lavender",
+            "darkgray",
+            "burlywood",
+            "dimgray"
+        ],
+        "resolution": "2559x1439",
+        "platform": "Desktop"
+    },
+    "gruvbox_grid.png": {
+        "tags": [
+            "window shade",
+            "nematode",
+            "wall clock",
+            "lampshade",
+            "match"
+        ],
+        "colors": [
+            "darkslategray",
+            "bisque"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
+    },
+    "ALLqk82.png": {
+        "tags": [
+            "ant",
+            "spider web",
+            "electric fan",
+            "plectrum",
+            "southern black widow"
+        ],
+        "colors": [
+            "darkseagreen",
+            "darkgray",
+            "gray",
+            "blanchedalmond",
+            "darkslategray",
+            "bisque",
+            "burlywood",
+            "dimgray"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
+    },
+    "debian_grey_swirl.png": {
+        "tags": [
+            "nematode",
+            "hook",
+            "coil",
+            "envelope",
+            "ring binder"
+        ],
+        "colors": [
+            "lightslategray",
+            "lightgray",
+            "darkslategray",
+            "darkgray",
+            "antiquewhite"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
+    },
+    "gruvbox_void_linux.png": {
+        "tags": [
+            "website",
+            "envelope",
+            "CRT screen",
+            "notebook computer",
+            "dust jacket"
+        ],
+        "colors": [
+            "darkslategray"
+        ],
+        "resolution": "3840x2160",
+        "platform": "Desktop"
+    },
+    "haz-mat.png": {
+        "tags": [
+            "traffic sign",
+            "traffic light",
+            "wall clock",
+            "analog clock",
+            "taxicab"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "cadetblue",
+            "darkslategray",
+            "bisque",
+            "darkkhaki",
+            "black"
+        ],
+        "resolution": "3840x2160",
+        "platform": "Desktop"
+    },
+    "sve.png": {
+        "tags": [
+            "bow",
+            "hook",
+            "cleaver",
+            "paper knife",
+            "scabbard"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "darkseagreen",
+            "khaki",
+            "gray",
+            "chocolate",
+            "darkslategray",
+            "burlywood",
+            "dimgray",
+            "black"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
+    },
+    "gruvb_solarsys.png": {
+        "tags": [
+            "plectrum",
+            "front curtain",
+            "shower curtain",
+            "T-shirt",
+            "abaya"
+        ],
+        "colors": [
+            "goldenrod",
+            "lightslategray",
+            "lightgray",
+            "darkorange",
+            "cadetblue",
+            "lightsalmon",
+            "darkslategray",
+            "burlywood",
+            "black"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
+    },
+    "PJbX0MG.png": {
+        "tags": [
+            "switch",
+            "traffic light",
+            "digital clock",
+            "hook",
+            "analog clock"
+        ],
+        "colors": [
+            "goldenrod",
+            "coral",
+            "lightgray",
+            "darkorange",
+            "chocolate",
+            "darkslategray",
+            "bisque",
+            "darkgray",
+            "burlywood"
+        ],
+        "resolution": "3440x1440",
+        "platform": "Desktop"
+    },
+    "solar-system-minimal.png": {
+        "tags": [
+            "modem",
+            "traffic light",
+            "spotlight",
+            "digital clock",
+            "gas mask"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "darkorange",
+            "khaki",
+            "crimson",
+            "black",
+            "darkslategray",
+            "bisque",
+            "cornflowerblue",
+            "gold",
+            "brown"
+        ],
+        "resolution": "2880x1800",
+        "platform": "Desktop"
+    },
+    "wp11058332.png": {
+        "tags": [
+            "police van",
+            "ambulance",
+            "airliner",
+            "analog clock",
+            "bow"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "khaki",
+            "gray",
+            "cadetblue",
+            "darkslategray",
+            "gainsboro",
+            "bisque",
+            "burlywood",
+            "dimgray",
+            "black"
+        ],
+        "resolution": "3840x2160",
+        "platform": "Desktop"
+    },
+    "wp11058333.png": {
+        "tags": [
+            "chime",
+            "syringe",
+            "screwdriver",
+            "pencil sharpener",
+            "ballpoint pen"
+        ],
+        "colors": [
+            "firebrick",
+            "goldenrod",
+            "lightslategray",
+            "indianred",
+            "darkgray",
+            "gray",
+            "crimson",
+            "darkgoldenrod",
+            "cadetblue",
+            "darkslategray",
+            "lightcoral",
+            "darkkhaki",
+            "blanchedalmond",
+            "darkolivegreen",
+            "bisque",
+            "dimgray",
+            "black"
+        ],
+        "resolution": "1920x1080",
+        "platform": "Desktop"
     }
 }

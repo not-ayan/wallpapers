@@ -205,5 +205,5 @@ def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", col
         json.dump(tags_json, tf, indent=4)
 
 # Example usage
-input_dir = "./cache/png"
+input_dir = "./"
 analyze_images(input_dir)

@@ -44,3 +44,23 @@ starry-sky.png: nematode, match, lighter, syringe, spotlight
 gruvbox_image31.png: traffic light, ocean liner, pirate ship, dust jacket, aircraft carrier
 girl-outline.png: coil, hook, chain, nematode, vase
 gruv-abstract-maze.png: maze, T-shirt, quilt, envelope, poncho
+gruvbox_minimal_space.png: wall clock, analog clock, bubble, barometer, weighing scale
+finalizer.png: T-shirt, laptop computer, sweatshirt, hockey puck, envelope
+firefox.png: envelope, website, Polaroid camera, eraser, dust jacket
+great-wave-of-kanagawa-gruvbox.png: barrette, parachute, balloon, chambered nautilus, wall clock
+gruvbox_grid.png: window shade, nematode, wall clock, lampshade, match
+ALLqk82.png: ant, spider web, electric fan, plectrum, southern black widow
+debian_grey_swirl.png: nematode, hook, coil, envelope, ring binder
+gruvbox_void_linux.png: website, envelope, CRT screen, notebook computer, dust jacket
+haz-mat.png: traffic sign, traffic light, wall clock, analog clock, taxicab
+sve.png: bow, hook, cleaver, paper knife, scabbard
+gruvb_solarsys.png: plectrum, ping-pong ball, toilet seat, balloon, wall clock
+PJbX0MG.png: switch, traffic light, digital clock, hook, analog clock
+solar-system-minimal.png: traffic light, spotlight, modem, digital clock, gas mask
+wp11058332.png: police van, ambulance, airliner, analog clock, bow
+wp11058333.png: chime, syringe, screwdriver, pencil sharpener, ballpoint pen
+gruvb_solarsys.png: plectrum, front curtain, shower curtain, T-shirt, abaya
+PJbX0MG.png: switch, traffic light, digital clock, hook, analog clock
+solar-system-minimal.png: modem, traffic light, spotlight, digital clock, gas mask
+wp11058333.png: chime, syringe, screwdriver, pencil sharpener, ballpoint pen
+wp11058332.png: police van, ambulance, airliner, analog clock, bow
