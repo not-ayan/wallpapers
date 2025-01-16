@@ -4,8 +4,29 @@ from PIL import Image
 from concurrent.futures import ThreadPoolExecutor
 import torch
 from torchvision import models, transforms
-import webcolors
-Image.MAX_IMAGE_PIXELS = None
+import math
+
+Image.MAX_IMAGE_PIXELS = None  # Allow processing large images
+
+# Define main tags for categorization
+MAIN_TAGS = {
+    "Art": ["Comic book", "Dust jacket", "T-shirt", "Painting", "Quilt", "Velvet", "Tray"],
+    "Technology": ["Computer mouse", "Keyboard", "Laptop", "Digital clock", "Spotlight", "Modem", "Projector"],
+    "Vehicles": ["Airship", "Sports car", "Taxicab", "Scooter", "Aircraft carrier", "Race car", "Ocean liner"],
+    "Nature": ["Coral reef", "Jellyfish", "Lakeshore", "Alp", "Volcano", "Seashore", "Sunflower"],
+    "Outdoor Structures": ["Stupa", "Dome", "Patio", "Lighthouse", "Thatched roof"],
+    "Fashion": ["Sunglasses", "Sandal", "Swimsuit", "Buckle", "Sarong", "Scarf"],
+    "Home Decor": ["Lampshade", "Vase", "Curtain", "Pillow", "Furniture", "Clock"],
+    "Sports & Recreation": ["Ski", "Race car", "Soccer ball", "Bobsleigh", "Paddle", "Tent"],
+    "Marine": ["Scuba diver", "Snorkel", "Submarine", "Shipwreck", "Motorboat"],
+    "Fantasy/Imagination": ["Airship", "Pirate ship", "Maze", "Comic book", "Spotlight"],
+    "Wildlife": ["Tiger shark", "Ant", "Toucan", "Spider", "Beaver", "Langur"],
+    "Infrastructure": ["Traffic light", "Crane (machine)", "Parking meter", "Bridge", "Traffic sign"],
+    "Household Items": ["Envelopes", "Ring binder", "Hook", "Scissors", "Screwdriver"],
+    "Space/Science": ["Telescope", "Rocket", "Solar system", "Barometer", "Weighing scale"],
+    "Miscellaneous": []
+}
+
 # Load ImageNet labels
 LABELS_URL = "https://raw.githubusercontent.com/anishathalye/imagenet-simple-labels/master/imagenet-simple-labels.json"
 LABELS_PATH = "imagenet_labels.json"
@@ -133,23 +154,30 @@ def closest_color_name(rgb):
             closest_name = name
 
     return closest_name
+def categorize_tags(tags):
+    """Categorize tags based on MAIN_TAGS."""
+    categories = set()
+    for tag in tags:
+        for category, keywords in MAIN_TAGS.items():
+            if tag in keywords:
+                categories.add(category)
+    return list(categories) if categories else ["Miscellaneous"]
 
-
-# Analyze a single image
 def analyze_image(file_path, tags_json, tags_txt, colors_txt):
+    """Analyze a single image for tags, categories, and colors."""
     try:
         with Image.open(file_path) as img:
-            # Get resolution
+            # Get resolution and determine platform
             resolution = f"{img.width}x{img.height}"
             platform = "Mobile" if img.height > img.width else "Desktop"
-
             file_name = os.path.basename(file_path)
-            # Skip if the image is already in tags.json
+
+            # Skip already processed images
             if file_name in tags_json:
                 print(f"Skipping {file_path}: Already processed.")
                 return
 
-            # Process the image for tags
+            # Generate tags using ResNet
             rgb_img = img.convert("RGB")
             tensor = transform(rgb_img).unsqueeze(0)
             with torch.no_grad():
@@ -157,21 +185,27 @@ def analyze_image(file_path, tags_json, tags_txt, colors_txt):
                 _, indices = torch.topk(outputs, 5)
                 tags = [LABELS[idx] for idx in indices[0]]
 
-            # Process colors
-            colors = [closest_color_name(rgb_img.getpixel((x, y))) for x in range(0, rgb_img.width, 50) for y in range(0, rgb_img.height, 50)]
-            colors = list(set(colors))  # Deduplicate
+            # Categorize tags
+            categories = categorize_tags(tags)
 
-            # Append tags to tags.json
+            # Analyze colors
+            step = max(1, min(img.width, img.height) // 50)  # Adjust step for color sampling
+            colors = [closest_color_name(rgb_img.getpixel((x, y)))
+                      for x in range(0, img.width, step)
+                      for y in range(0, img.height, step)]
+            colors = list(set(colors))  # Remove duplicates
+
+            # Save results to tags.json
             tags_json[file_name] = {
                 "tags": tags,
+                "categories": categories,
                 "colors": colors,
                 "resolution": resolution,
                 "platform": platform
             }
             with open(tags_txt, "a") as tf:
-                tf.write(f"{file_name}: {', '.join(tags)}\n")
+                tf.write(f"{file_name}: {', '.join(tags)}\nCategories: {', '.join(categories)}\n")
 
-            # Append colors to colors.txt
             with open(colors_txt, "a") as cf:
                 cf.write("\n".join(colors) + "\n")
 
@@ -180,9 +214,8 @@ def analyze_image(file_path, tags_json, tags_txt, colors_txt):
     except Exception as e:
         print(f"Error processing {file_path}: {e}")
 
-# Main function
 def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", colors_txt="colors.txt", max_workers=8):
-    # Load existing tags.json if present
+    """Analyze all PNG images in the input folder."""
     tags_json = {}
     if os.path.exists(tags_file):
         with open(tags_file) as tf:
@@ -195,14 +228,12 @@ def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", col
             if os.path.isfile(file_path) and file.lower().endswith(".png"):
                 futures.append(executor.submit(analyze_image, file_path, tags_json, tags_txt, colors_txt))
 
-        # Wait for all tasks to complete
         for future in futures:
             future.result()
 
     # Save updated tags.json
     with open(tags_file, "w") as tf:
         json.dump(tags_json, tf, indent=4)
-
 
 # Example usage
 input_dir = "./"
