@@ -2,7 +2,7 @@ import os
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None 
 
-def optimize_images(input_folder, output_folder, quality=25):
+def optimize_images(input_folder, output_folder, quality=55):
     """
     Optimize images for web viewing and save them in the specified cache folder.
 
@@ -41,6 +41,6 @@ def optimize_images(input_folder, output_folder, quality=25):
                 print(f"Skipping {file}: {e}")
 
 # Example usage
-input_dir = "./"
-cache_dir = os.path.join(input_dir, "cache/png")
+input_dir = "./sadfa"
+cache_dir = os.path.join(input_dir, "cache")
 optimize_images(input_dir, cache_dir)

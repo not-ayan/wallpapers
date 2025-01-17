@@ -4,7 +4,7 @@ from PIL import Image
 from concurrent.futures import ThreadPoolExecutor
 import torch
 from torchvision import models, transforms
-import math
+import hashlib
 
 Image.MAX_IMAGE_PIXELS = None  # Allow processing large images
 
@@ -24,6 +24,7 @@ MAIN_TAGS = {
     "Infrastructure": ["Traffic light", "Crane (machine)", "Parking meter", "Bridge", "Traffic sign"],
     "Household Items": ["Envelopes", "Ring binder", "Hook", "Scissors", "Screwdriver"],
     "Space/Science": ["Telescope", "Rocket", "Solar system", "Barometer", "Weighing scale"],
+    "Anime": ["Anime character", "Manga", "Anime scene", "Cosplay"],
     "Miscellaneous": []
 }
 
@@ -50,110 +51,117 @@ model.eval()
 
 import math
 
-def closest_color_name(rgb):
-    """Convert an RGB color to its closest CSS3 color name."""
-    css3_names_to_rgb = {
-        "aliceblue": (240, 248, 255),
-        "antiquewhite": (250, 235, 215),
-        "aqua": (0, 255, 255),
-        "aquamarine": (127, 255, 212),
-        "azure": (240, 255, 255),
-        "beige": (245, 245, 220),
-        "bisque": (255, 228, 196),
-        "black": (0, 0, 0),
-        "blanchedalmond": (255, 235, 205),
-        "blue": (0, 0, 255),
-        "blueviolet": (138, 43, 226),
-        "brown": (165, 42, 42),
-        "burlywood": (222, 184, 135),
-        "cadetblue": (95, 158, 160),
-        "chartreuse": (127, 255, 0),
-        "chocolate": (210, 105, 30),
-        "coral": (255, 127, 80),
-        "cornflowerblue": (100, 149, 237),
-        "cornsilk": (255, 248, 220),
-        "crimson": (220, 20, 60),
-        "cyan": (0, 255, 255),
-        "darkblue": (0, 0, 139),
-        "darkcyan": (0, 139, 139),
-        "darkgoldenrod": (184, 134, 11),
-        "darkgray": (169, 169, 169),
-        "darkgreen": (0, 100, 0),
-        "darkkhaki": (189, 183, 107),
-        "darkmagenta": (139, 0, 139),
-        "darkolivegreen": (85, 107, 47),
-        "darkorange": (255, 140, 0),
-        "darkorchid": (153, 50, 204),
-        "darkred": (139, 0, 0),
-        "darksalmon": (233, 150, 122),
-        "darkseagreen": (143, 188, 143),
-        "darkslateblue": (72, 61, 139),
-        "darkslategray": (47, 79, 79),
-        "darkturquoise": (0, 206, 209),
-        "darkviolet": (148, 0, 211),
-        "deeppink": (255, 20, 147),
-        "deepskyblue": (0, 191, 255),
-        "dimgray": (105, 105, 105),
-        "dodgerblue": (30, 144, 255),
-        "firebrick": (178, 34, 34),
-        "floralwhite": (255, 250, 240),
-        "forestgreen": (34, 139, 34),
-        "fuchsia": (255, 0, 255),
-        "gainsboro": (220, 220, 220),
-        "ghostwhite": (248, 248, 255),
-        "gold": (255, 215, 0),
-        "goldenrod": (218, 165, 32),
-        "gray": (128, 128, 128),
-        "green": (0, 128, 0),
-        "greenyellow": (173, 255, 47),
-        "honeydew": (240, 255, 240),
-        "hotpink": (255, 105, 180),
-        "indianred": (205, 92, 92),
-        "indigo": (75, 0, 130),
-        "ivory": (255, 255, 240),
-        "khaki": (240, 230, 140),
-        "lavender": (230, 230, 250),
-        "lavenderblush": (255, 240, 245),
-        "lawngreen": (124, 252, 0),
-        "lemonchiffon": (255, 250, 205),
-        "lightblue": (173, 216, 230),
-        "lightcoral": (240, 128, 128),
-        "lightcyan": (224, 255, 255),
-        "lightgoldenrodyellow": (250, 250, 210),
-        "lightgray": (211, 211, 211),
-        "lightgreen": (144, 238, 144),
-        "lightpink": (255, 182, 193),
-        "lightsalmon": (255, 160, 122),
-        "lightseagreen": (32, 178, 170),
-        "lightskyblue": (135, 206, 250),
-        "lightslategray": (119, 136, 153),
-        "lightsteelblue": (176, 196, 222),
-        "lightyellow": (255, 255, 224),
-        "lime": (0, 255, 0),
-        "limegreen": (50, 205, 50),
-        "linen": (250, 240, 230),
-        "magenta": (255, 0, 255),
-        "maroon": (128, 0, 0),
-        "mediumaquamarine": (102, 205, 170),
-        "mediumblue": (0, 0, 205),
-        "mediumorchid": (186, 85, 211),
-        "mediumpurple": (147, 112, 219),
-    }
+# CSS3 colors mapped to broader categories
+COLOR_CATEGORIES = {
+    "red": ["red", "darkred", "indianred", "crimson", "firebrick"],
+    "blue": ["blue", "darkblue", "deepskyblue", "dodgerblue", "mediumblue"],
+    "green": ["green", "darkgreen", "limegreen", "forestgreen"],
+    "yellow": ["yellow", "gold", "khaki", "lightgoldenrodyellow"],
+    "orange": ["orange", "darkorange", "coral", "chocolate"],
+    "purple": ["purple", "indigo", "darkmagenta", "orchid", "mediumpurple"],
+    "pink": ["pink", "deeppink", "hotpink", "lightpink"],
+    "gray": ["gray", "darkgray", "dimgray", "lightgray"],
+    "white": ["white", "ivory", "snow", "floralwhite"],
+    "black": ["black"],
+    "brown": ["brown", "saddlebrown", "peru", "chocolate"],
+    "cyan": ["cyan", "aqua", "darkcyan"],
+    "magenta": ["magenta", "fuchsia"],
+}
 
-    # Find the closest color by Euclidean distance in RGB space
+CSS3_COLORS_TO_RGB = {
+    "red": (255, 0, 0),
+    "darkred": (139, 0, 0),
+    "indianred": (205, 92, 92),
+    "crimson": (220, 20, 60),
+    "firebrick": (178, 34, 34),
+    "blue": (0, 0, 255),
+    "darkblue": (0, 0, 139),
+    "deepskyblue": (0, 191, 255),
+    "dodgerblue": (30, 144, 255),
+    "mediumblue": (0, 0, 205),
+    "green": (0, 128, 0),
+    "darkgreen": (0, 100, 0),
+    "limegreen": (50, 205, 50),
+    "forestgreen": (34, 139, 34),
+    "yellow": (255, 255, 0),
+    "gold": (255, 215, 0),
+    "khaki": (240, 230, 140),
+    "lightgoldenrodyellow": (250, 250, 210),
+    "orange": (255, 165, 0),
+    "darkorange": (255, 140, 0),
+    "coral": (255, 127, 80),
+    "chocolate": (210, 105, 30),
+    "purple": (128, 0, 128),
+    "indigo": (75, 0, 130),
+    "darkmagenta": (139, 0, 139),
+    "orchid": (218, 112, 214),
+    "mediumpurple": (147, 112, 219),
+    "pink": (255, 192, 203),
+    "deeppink": (255, 20, 147),
+    "hotpink": (255, 105, 180),
+    "lightpink": (255, 182, 193),
+    "gray": (128, 128, 128),
+    "darkgray": (169, 169, 169),
+    "dimgray": (105, 105, 105),
+    "lightgray": (211, 211, 211),
+    "white": (255, 255, 255),
+    "ivory": (255, 255, 240),
+    "snow": (255, 250, 250),
+    "floralwhite": (255, 250, 240),
+    "black": (0, 0, 0),
+    "brown": (165, 42, 42),
+    "saddlebrown": (139, 69, 19),
+    "peru": (205, 133, 63),
+    "chocolate": (210, 105, 30),
+    "cyan": (0, 255, 255),
+    "aqua": (0, 255, 255),
+    "darkcyan": (0, 139, 139),
+    "magenta": (255, 0, 255),
+    "fuchsia": (255, 0, 255),
+}
+
+def closest_color_name(rgb):
+    """Convert an RGB color to its closest main category color."""
     min_distance = float("inf")
     closest_name = None
-    for name, color_rgb in css3_names_to_rgb.items():
+    for name, color_rgb in CSS3_COLORS_TO_RGB.items():
         distance = math.sqrt(
-            (color_rgb[0] - rgb[0])**2 +
-            (color_rgb[1] - rgb[1])**2 +
-            (color_rgb[2] - rgb[2])**2
+            (color_rgb[0] - rgb[0]) ** 2 +
+            (color_rgb[1] - rgb[1]) ** 2 +
+            (color_rgb[2] - rgb[2]) ** 2
         )
         if distance < min_distance:
             min_distance = distance
             closest_name = name
 
-    return closest_name
+    # Map the closest CSS3 color to its broader category
+    for category, colors in COLOR_CATEGORIES.items():
+        if closest_name in colors:
+            return category
+    return "unknown"  # In case no match is found
+
+
+
+# Simplified color mapping
+def map_color(color_name):
+    color_mapping = {
+        "red": ["red", "crimson", "darkred", "firebrick"],
+        "blue": ["blue", "darkblue", "dodgerblue", "skyblue"],
+        "green": ["green", "lime", "darkgreen", "forestgreen"],
+        "yellow": ["yellow", "gold", "khaki", "lemonchiffon"],
+        "purple": ["purple", "violet", "magenta", "indigo"],
+        "orange": ["orange", "darkorange", "chocolate", "coral"],
+        "pink": ["pink", "deeppink", "hotpink", "lightpink"],
+        "brown": ["brown", "sienna", "tan", "burlywood"],
+        "gray": ["gray", "darkgray", "lightgray", "dimgray"],
+        "black": ["black", "darkslategray"],
+        "white": ["white", "ivory", "azure", "ghostwhite"]
+    }
+    for key, values in color_mapping.items():
+        if color_name in values:
+            return key
+    return "other"
+
 def categorize_tags(tags):
     """Categorize tags based on MAIN_TAGS."""
     categories = set()
@@ -163,6 +171,14 @@ def categorize_tags(tags):
                 categories.add(category)
     return list(categories) if categories else ["Miscellaneous"]
 
+def sha256_file(file_path):
+    """Calculate SHA-256 of a file."""
+    sha256 = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
 def analyze_image(file_path, tags_json, tags_txt, colors_txt):
     """Analyze a single image for tags, categories, and colors."""
     try:
@@ -170,10 +186,10 @@ def analyze_image(file_path, tags_json, tags_txt, colors_txt):
             # Get resolution and determine platform
             resolution = f"{img.width}x{img.height}"
             platform = "Mobile" if img.height > img.width else "Desktop"
-            file_name = os.path.basename(file_path)
+            file_hash = sha256_file(file_path)
 
             # Skip already processed images
-            if file_name in tags_json:
+            if file_hash in tags_json:
                 print(f"Skipping {file_path}: Already processed.")
                 return
 
@@ -190,24 +206,25 @@ def analyze_image(file_path, tags_json, tags_txt, colors_txt):
 
             # Analyze colors
             step = max(1, min(img.width, img.height) // 50)  # Adjust step for color sampling
-            colors = [closest_color_name(rgb_img.getpixel((x, y)))
-                      for x in range(0, img.width, step)
-                      for y in range(0, img.height, step)]
-            colors = list(set(colors))  # Remove duplicates
+            raw_colors = [closest_color_name(rgb_img.getpixel((x, y)))
+                          for x in range(0, img.width, step)
+                          for y in range(0, img.height, step)]
+            mapped_colors = list(set(map(map_color, raw_colors)))  # Map to simplified colors and remove duplicates
 
             # Save results to tags.json
-            tags_json[file_name] = {
+            tags_json[file_hash] = {
                 "tags": tags,
                 "categories": categories,
-                "colors": colors,
+                "colors": mapped_colors,
                 "resolution": resolution,
                 "platform": platform
             }
+
             with open(tags_txt, "a") as tf:
-                tf.write(f"{file_name}: {', '.join(tags)}\nCategories: {', '.join(categories)}\n")
+                tf.write(f"{file_hash}: Tags: {', '.join(tags)}\n")
 
             with open(colors_txt, "a") as cf:
-                cf.write("\n".join(colors) + "\n")
+                cf.write("\n".join(mapped_colors) + "\n")
 
             print(f"Processed {file_path}")
 
@@ -236,5 +253,5 @@ def analyze_images(input_folder, tags_file="tags.json", tags_txt="tags.txt", col
         json.dump(tags_json, tf, indent=4)
 
 # Example usage
-input_dir = "./"
+input_dir = "./wallpapers"
 analyze_images(input_dir)
